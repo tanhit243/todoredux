@@ -16,3 +16,10 @@ export const toggleTodo = id => ({
         id
     }
 })  
+
+export const setFilter = filter => ({
+    type: actionTypes.SET_FILTER,
+    payload: {
+        filter
+    }
+})

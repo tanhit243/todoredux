@@ -1,3 +1,5 @@
+import { VISIBILITY_FILTERS } from './constants';
+
 //get all todo in todos
 export const getTodosState = store => store.todos
 //get allIds
@@ -9,3 +11,17 @@ export const getTodoById = (store, id) =>
 
 export const getTodos = store =>
   getTodoList(store).map(id => getTodoById(store, id))
+
+export const getTodosByVisibilityFilter = (state,visibilityFilter) => {
+  let allTodos = getTodos(state);
+
+  switch (visibilityFilter) {
+    case VISIBILITY_FILTERS.COMPLETED:
+      return allTodos.filter(todo => todo.completed);
+    case VISIBILITY_FILTERS.INCOMPLETE:
+      return allTodos.filter(todo => !todo.completed);
+    case VISIBILITY_FILTERS.ALL:
+    default:
+      return allTodos;
+  }
+}
